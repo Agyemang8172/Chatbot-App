@@ -14,11 +14,13 @@ function App() {
    const userMessage =  { id:Date.now(),text,sender:'user'};
    setMessages(prev => [...prev,userMessage])
 
-   const handleSuggestionClick= (suggestion) => {
-     handleSendMessage(suggestion)
-   }
+ 
 
   }
+
+    const handleSuggestionClick= (suggestion) => {
+     handleSendMessage(suggestion)
+   }
 
 
   return (
@@ -27,7 +29,7 @@ function App() {
         <Header />
     </div>
 
-     <div className='flex-1 bg-gradient-to-b from-pink-100 to-blue-200'>
+     <div className='flex-1 bg-gradient-to-b from-pink-100 to-blue-200 space-y-3.5  '>
          <ChatWindow  messages={messages} onSuggestionClick={handleSuggestionClick} />
          <ChatInput   onSendMessage = { handleSendMessage}/>
      </div>

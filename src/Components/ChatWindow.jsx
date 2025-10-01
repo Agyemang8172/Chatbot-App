@@ -6,7 +6,7 @@ const ChatWindow = ( {messages=[],onSuggestionClick }) => {
      const messagesEndRef = useRef(null);
 
      useEffect(()=> {
-        messagesEndRef.current ?.scrollIntoView( {behavior : 'smooth'})
+        messagesEndRef.current ?.scrollIntoView({ behavior : 'smooth' })
      },[ messages])
      if (messages.length === 0) {
   return (
@@ -22,6 +22,7 @@ const ChatWindow = ( {messages=[],onSuggestionClick }) => {
                     <div
                      key={index}
                      className='bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow cursor-pointer'
+                     onClick={() => onSuggestionClick  && onSuggestionClick(suggestion)}
                     > 
                      {suggestion}
                     </div>
@@ -36,8 +37,8 @@ const ChatWindow = ( {messages=[],onSuggestionClick }) => {
    return(
      <div className='flex-1 overflow-y-auto px-4 py-6'>
         <div className='space-y-4'>
-            {messages.map((message)=>(
-                <div key={message.id}  
+               {messages.map((message)=>(
+        <div key={message.id}  
                 className={`flex ${message.sender === "user" ? 'justify-end':'justify-start'}`}>
                 <div className={`max-w-xs md:max-w-md rounded-lg px-4 py-2 
                 ${ message.sender === 'user' 
@@ -45,8 +46,8 @@ const ChatWindow = ( {messages=[],onSuggestionClick }) => {
                  : 'bg-gray-200 text-gray-800'} `}>
                 {message.text}
 
-                    </div>
-                    </div>
+                </div>
+         </div>
 
             ))}
 
