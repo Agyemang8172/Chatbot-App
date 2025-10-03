@@ -24,15 +24,17 @@ function App() {
 
 
   return (
-  <div className='min-h-screen flex flex-col justify-between  '>
-    <div className='bg-white mt-30'>
-        <Header />
+  <div className='min-h-screen flex flex-col items-center  max-w-4xl mx-auto px-4   '>
+    <div className=' mt-10'>
+       <Header />
     </div>
 
-     <div className='flex-1 bg-gradient-to-b from-pink-100 to-blue-200 space-y-3.5  '>
+   <div className='flex-1 w-full max-w-4xl px-4 flex flex-col justify-end'>
+       <div className='bg-gradient-to-r from-transparent via-pink-50 to-blue-100 p-6 mb-6 rounded-2xl  '>
          <ChatWindow  messages={messages} onSuggestionClick={handleSuggestionClick} />
-         <ChatInput   onSendMessage = { handleSendMessage}/>
-     </div>
+         <ChatInput   onSendMessage = {handleSendMessage}/>
+       </div>
+  </div>
   </div>
    
   );
