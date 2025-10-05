@@ -11,12 +11,12 @@ const ChatWindow = ( {messages=[],onSuggestionClick }) => {
      if (messages.length === 0) {
   return (
     <div className='flex-1 overflow-y-auto px-4 py-6 '>
-        <h3 className='text-left text-gray-700 text-lg font-medium mb-6'>Suggestions on what to ask Our AI</h3>
+        <h3 className='text-left text-gray-500 text-sm font-medium mb-3'>Suggestions on what to ask Our AI</h3>
           <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mb-8'>
             {[
                     "What can I ask you to do?",
-                    "Which one of the projects is operating the best",
-                    "What pojects should I be concerned about right now"
+                    "Which one of the projects is operating the best?",
+                    "What pojects should I be concerned about right now?"
             ].map((suggestion,index)=> (
                     <div
                      key={index}

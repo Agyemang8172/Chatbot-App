@@ -29,9 +29,9 @@ function App() {
        <Header />
     </div>
 
-   <div className='flex-1 w-full max-w-4xl px-4 flex flex-col justify-end'>
-       <div className='bg-gradient-to-r from-transparent via-pink-50 to-blue-100 p-6 mb-6 rounded-2xl  '>
-         <ChatWindow  messages={messages} onSuggestionClick={handleSuggestionClick} />
+   <div className='flex-1 w-full min-w-3xl px-4 flex flex-col justify-end'>
+       <div className='bg-gradient-to-r  from-pink-400 to-blue-100 p-6 border-none mb-6   '>
+         <ChatWindow  messages= {messages} onSuggestionClick={handleSuggestionClick} />
          <ChatInput   onSendMessage = {handleSendMessage}/>
        </div>
   </div>
