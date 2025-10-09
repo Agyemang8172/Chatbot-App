@@ -70,7 +70,7 @@ try{
    <div className='flex-1 w-full min-w-3xl px-4 flex flex-col justify-end'>
        <div className='bg-gradient-to-r  from-pink-400 to-blue-100 p-6 border-none mb-6   '>
          <ChatWindow  messages= {messages} onSuggestionClick={handleSuggestionClick} />
-         <ChatInput   onSendMessage = {handleSendMessage}/>
+         <ChatInput   onSendMessage = {handleSendMessage}  isLoading={isLoading}/>
        </div>
   </div>
   </div>
