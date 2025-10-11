@@ -23,7 +23,7 @@ function App() {
     
 
 try{
-     const response = await fetch('http://localhost:3001/chat', {
+     const response = await fetch('https://vercel.com/godfred-agyemangs-projects/chatbot-app', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ message:text })
@@ -34,13 +34,14 @@ try{
         throw new Error('Network responses was not ok.')
       }
 
-
+      
         const data = await response.json();
         const aiResponse = data.text
 
         const aiMessage = {  id:Date.now() + 1, text: aiResponse, sender:"ai"};
         setMessages((prev) => [...prev,aiMessage])
        } 
+
 
 
       catch (error) { 
