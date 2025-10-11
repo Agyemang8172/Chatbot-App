@@ -23,7 +23,7 @@ function App() {
     
 
 try{
-     const response = await fetch('https://vercel.com/godfred-agyemangs-projects/chatbot-app', {
+     const response = await fetch('./api', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ message:text })
