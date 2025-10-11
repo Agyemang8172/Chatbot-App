@@ -23,12 +23,12 @@ function App() {
     
 
 try{
-     const response = await fetch('./api', {
+     const response = await fetch('/api', {
       method:'POST',
       headers: { 'Content-Type': 'application/json'},
       body: JSON.stringify({ message:text })
      })
-     
+
   
      if(!response.ok) {
         throw new Error('Network responses was not ok.')
