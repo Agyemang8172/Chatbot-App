@@ -1,82 +1,59 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import Header from './Components/Header'
 import ChatWindow from './Components/ChatWindow'
 import ChatInput from './Components/ChatInput'
 
-
-
 function App() {
-  const [messages,setMessages] = useState([]);
-  const [isLoading,setIsLoading] = useState(false);
+  // ADD MISSING STATE
+  const [messages, setMessages] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
- 
+  // ADD MISSING HANDLER FUNCTIONS
+  const handleSendMessage = async (text) => {
+    if (isLoading) return;
 
-  const handleSendMessage = async (text)  => {
-   if (isLoading)  return;
+    const userMessage = { id: Date.now(), text, sender: 'user' };
+    setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
 
-   const userMessage =  { id:Date.now(),text,sender:'user'};
-   setMessages(prev => [...prev,userMessage])
-   setIsLoading(true)
-    
+    try {
+      // TODO: Add your API call here
+      // For now, we'll simulate a response
+      setTimeout(() => {
+        const aiMessage = { id: Date.now() + 1, text: "This is a simulated response", sender: 'ai' };
+        setMessages(prev => [...prev, aiMessage]);
+        setIsLoading(false);
+      }, 1000);
+    } catch (error) {
+      console.error('Error:', error);
+      setIsLoading(false);
+    }
+  };
 
-try{
-     const response = await fetch('/api', {
-      method:'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify({ message:text })
-     })
-
-  
-     if(!response.ok) {
-        throw new Error('Network responses was not ok.')
-      }
-
-      
-        const data = await response.json();
-        const aiResponse = data.text
-
-        const aiMessage = {  id:Date.now() + 1, text: aiResponse, sender:"ai"};
-        setMessages((prev) => [...prev,aiMessage])
-       } 
-
-
-
-      catch (error) { 
-           console.error ('Failed to get responses from an API:'
-          , error) ;
-     const errorMessage = {
-        id : Date.now() + 1,
-        text: "Sorry I am unable to respond right now",
-        sender: 'ai'
-       };
-       setMessages((prev) => [...prev,errorMessage])
-      } finally{
-           setIsLoading(false);
-      }
-};
-    const handleSuggestionClick= (suggestion) => {
-     handleSendMessage(suggestion)
-   }
-
+  const handleSuggestionClick = (suggestion) => {
+    handleSendMessage(suggestion);
+  };
 
   return (
-  <div className='min-h-screen flex flex-col items-center  max-w-4xl mx-auto px-4   '>
-    <div className=' mt-10'>
-       <Header />
+    <div className='min-h-screen bg-white flex flex-col'>
+      {/* Header - White background */}
+      <div className='w-full bg-white'>
+        <div className='max-w-4xl mx-auto px-4 py-8'>
+          <Header />
+        </div>
+      </div>
+
+      {/* Main Content - Centered card with gradient, NO BORDER */}
+      <div className='flex-1 flex items-center justify-center pb-8'>
+        <div className='w-full max-w-2xl mx-auto px-4'>
+          <div className='bg-gradient-to-br from-pink-100 to-blue-100 rounded-2xl p-6'>
+            <ChatWindow messages={messages} onSuggestionClick={handleSuggestionClick} />
+            <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+          </div>
+        </div>
+      </div>
     </div>
+  );
+}
 
-   <div className='flex-1 w-full min-w-3xl px-4 flex flex-col justify-end'>
-       <div className='bg-gradient-to-r  from-pink-400 to-blue-100 p-6 border-none mb-6   '>
-         <ChatWindow  messages= {messages} onSuggestionClick={handleSuggestionClick} />
-         <ChatInput   onSendMessage = {handleSendMessage}  isLoading={isLoading}/>
-       </div>
-  </div>
-  </div>
-   
-  );  
-};
-
-export default App
+export default App;
